@@ -20,6 +20,11 @@ class Employees:
 
         return Employee(*c.fetchone())
 
+    def getTable(self):
+        c = self._conn.cursor()
+        c.execute(""" SELECT * FROM Employees ORDER BY id ASC""")
+        return c.fetchall()
+
 
 # DTO for Suppliers
 class Suppliers:
@@ -39,6 +44,11 @@ class Suppliers:
 
         return Supplier(*c.fetchone())
 
+    def getTable(self):
+        c = self._conn.cursor()
+        c.execute(""" SELECT * FROM Suppliers ORDER BY id ASC""")
+        return c.fetchall()
+
 
 # DTO for Products
 class Products:
@@ -57,6 +67,11 @@ class Products:
                         """, [product_id])
 
         return Product(*c.fetchone())
+
+    def getTable(self):
+        c = self._conn.cursor()
+        c.execute(""" SELECT * FROM Products ORDER BY id ASC""")
+        return c.fetchall()
 
     def add_quantity(self, product, added_quantity):
         self._conn.execute("""
@@ -87,6 +102,11 @@ class Coffee_stands:
 
         return Coffee_stands(*c.fetchone())
 
+    def getTable(self):
+        c = self._conn.cursor()
+        c.execute(""" SELECT * FROM Coffee_stands ORDER BY id ASC""")
+        return c.fetchall()
+
 
 #DTO for Activities
 class Activities:
@@ -101,10 +121,14 @@ class Activities:
     def find(self, aid):
         c = self._conn.cursor()
         c.execute("""
-                                   SELECT aid, product_id, quantity, activator_id, date FROM Activities WHERE id = ?
+                     SELECT aid, product_id, quantity, activator_id, date FROM Activities WHERE id = ?
                                """, [aid])
 
         return Activity(*c.fetchone())
 
+    def getTable(self):
+        c = self._conn.cursor()
+        c.execute(""" SELECT * FROM Activities ORDER BY date ASC""")
+        return c.fetchall()
 
 

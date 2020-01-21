@@ -8,8 +8,7 @@ from DAO import *
 
 class _Repository:
     def __init__(self):
-        if os.path.exists("moncafe.db"):
-            os.remove("moncafe.db")
+
         self._conn = sqlite3.connect('moncafe.db')
         self.employees = Employees(self._conn)
         self.suppliers = Suppliers(self._conn)
@@ -40,8 +39,9 @@ class _Repository:
         );
 
         CREATE TABLE Products (
-            id      INT     PRIMARY KEY
+            id      INT     PRIMARY KEY,
             description  REAL     NOT NULL,
+            price REAL NOT NULL,
             quantity           INT     NOT NULL
         );
         CREATE TABLE Coffee_stands (
@@ -52,11 +52,12 @@ class _Repository:
         CREATE TABLE Activities (
             aid INT PRIMARY KEY,
             product_id INT REFERENCES Product(id),
-            quantity INT NOT NULL.
-            activator_id INT NOT NULL 
+            quantity INT NOT NULL,
+            activator_id INT NOT NULL ,
             date DATE NOT NULL
         );
     """)
+
 
 
 # the repository singleton

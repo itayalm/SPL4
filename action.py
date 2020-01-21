@@ -4,13 +4,14 @@ from DTO import *
 from DAO import *
 from Repository import *
 
-actions_file = open(sys.argv[1], "r")
+actions_file = open(sys.argv[len(sys.argv) -1], "r")
 
 actions_file_lines = actions_file.readlines()
 curr_aid = 1
 for line in actions_file_lines:
     # parse the current line
     product_id = line.split(', ')[0]
+    print(line)
     quantity = line.split(', ')[1]
     activator_id = line.split(', ')[2]
     date = line.split(', ')[3]
