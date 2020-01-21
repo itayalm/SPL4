@@ -57,7 +57,6 @@ class _Repository:
             date DATE NOT NULL
         );
     """)
-    def insertRow(self, row):
 
 
 # the repository singleton
