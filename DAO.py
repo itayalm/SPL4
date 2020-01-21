@@ -58,6 +58,16 @@ class Products:
 
         return Product(*c.fetchone())
 
+    def add_quantity(self, product, added_quantity):
+        self._conn.execute("""
+                  UPDATE Products SET quantity=(?) WHERE id=(?)
+              """, [product.quantity+added_quantity, product.id])
+
+    def remove_quantity(self, product, removed_quantity):
+        self._conn.execute("""
+                  UPDATE Products SET quantity=(?) WHERE id=(?)
+              """, [product.quantity - removed_quantity, product.id])
+
 
 # DTO for Coffee_stands
 class Coffee_stands:
