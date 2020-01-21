@@ -47,6 +47,7 @@ class _Repository:
             number_of_employees INT
         );
         CREATE TABLE Activities (
+            aid INT PRIMARY KEY,
             product_id INT REFERENCES Product(id),
             quantity INT NOT NULL.
             activator_id INT NOT NULL 
