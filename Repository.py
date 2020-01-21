@@ -11,11 +11,11 @@ class _Repository:
         if os.path.exists("moncafe.db"):
             os.remove("moncafe.db")
         self._conn = sqlite3.connect('moncafe.db')
-        self.employee = Employees(self._conn)
-        self.supplier = Suppliers(self._conn)
-        self.product = Products(self._conn)
+        self.employees = Employees(self._conn)
+        self.suppliers = Suppliers(self._conn)
+        self.products = Products(self._conn)
         self.coffee_stands = Coffee_stands(self._conn)
-        self.activity = Activities(self._conn)
+        self.activities = Activities(self._conn)
 
     def _close(self):
         self._conn.commit()
@@ -57,9 +57,8 @@ class _Repository:
             date DATE NOT NULL
         );
     """)
-    def insertList(self, rowsToInsert):
-        for row in rowsToInsert:
-            if row[]
+    def insertRow(self, row):
+
 
 # the repository singleton
 repo = _Repository()
