@@ -1,12 +1,15 @@
 import atexit
 import sqlite3
 import DTO
+import os
 # The Repository
 from DAO import *
 
 
 class _Repository:
     def __init__(self):
+        if os.path.exists("moncafe.db"):
+            os.remove("moncafe.db")
         self._conn = sqlite3.connect('moncafe.db')
         self.employee = Employees(self._conn)
         self.supplier = Suppliers(self._conn)
@@ -54,7 +57,9 @@ class _Repository:
             date DATE NOT NULL
         );
     """)
-
+    def insertList(self, rowsToInsert):
+        for row in rowsToInsert:
+            if row[]
 
 # the repository singleton
 repo = _Repository()
