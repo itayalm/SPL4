@@ -1,5 +1,6 @@
 # Data Transfer Objects:
 
+
 # DTO for Employees
 class Employee:
     def __init__(self, id, name, salary, coffee_stand):
@@ -36,7 +37,8 @@ class Coffee_stand:
 
 #DTO for Activities
 class Activity:
-    def __init__(self, product_id, quantity, activator_id, date):
+    def __init__(self, activity_id, product_id, quantity, activator_id, date):
+        self.activity_id = activity_id
         self.product_id = product_id
         self.quantity = quantity
         self.activator_id = activator_id
