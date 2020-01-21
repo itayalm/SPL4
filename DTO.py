@@ -35,10 +35,11 @@ class Coffee_stand:
         self.number_of_employees = number_of_employees
 
 
-#DTO for Activities
+# DTO for Activities
+# aid is Activities' primary key
 class Activity:
-    def __init__(self, activity_id, product_id, quantity, activator_id, date):
-        self.activity_id = activity_id
+    def __init__(self, aid, product_id, quantity, activator_id, date):
+        self.aid = aid
         self.product_id = product_id
         self.quantity = quantity
         self.activator_id = activator_id
