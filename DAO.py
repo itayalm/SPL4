@@ -15,7 +15,7 @@ class Employees:
     def find(self, employee_id):
         c = self._conn.cursor()
         c.execute("""
-                    SELECT id, name, salary, coffee_stand FROM students WHERE id = ?
+                    SELECT id, name, salary, coffee_stand FROM Employees WHERE id = ?
                 """, [employee_id])
 
         return Employee(*c.fetchone())
@@ -34,7 +34,7 @@ class Suppliers:
     def find(self, supplier_id):
         c = self._conn.cursor()
         c.execute("""
-                    SELECT id, name, contact_information FROM students WHERE id = ?
+                    SELECT id, name, contact_information FROM Suppliers WHERE id = ?
                 """, [supplier_id])
 
         return Supplier(*c.fetchone())
@@ -53,10 +53,20 @@ class Products:
     def find(self, product_id):
         c = self._conn.cursor()
         c.execute("""
-                            SELECT id, description, price, quantity FROM students WHERE id = ?
+                            SELECT id, description, price, quantity FROM Products WHERE id = ?
                         """, [product_id])
 
         return Product(*c.fetchone())
+
+    def add_quantity(self, product, added_quantity):
+        self._conn.execute("""
+                  UPDATE Products SET quantity=(?) WHERE id=(?)
+              """, [product.quantity+added_quantity, product.id])
+
+    def remove_quantity(self, product, removed_quantity):
+        self._conn.execute("""
+                  UPDATE Products SET quantity=(?) WHERE id=(?)
+              """, [product.quantity - removed_quantity, product.id])
 
 
 # DTO for Coffee_stands
@@ -72,7 +82,7 @@ class Coffee_stands:
     def find(self, coffee_stand_id):
         c = self._conn.cursor()
         c.execute("""
-                                   SELECT id, location, number_of_employees FROM students WHERE id = ?
+                                   SELECT id, location, number_of_employees FROM Coffee_stands WHERE id = ?
                                """, [coffee_stand_id])
 
         return Coffee_stands(*c.fetchone())
@@ -91,7 +101,7 @@ class Activities:
     def find(self, aid):
         c = self._conn.cursor()
         c.execute("""
-                                   SELECT aid, product_id, quantity, activator_id, date FROM students WHERE id = ?
+                                   SELECT aid, product_id, quantity, activator_id, date FROM Activities WHERE id = ?
                                """, [aid])
 
         return Activity(*c.fetchone())
