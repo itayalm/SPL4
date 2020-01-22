@@ -65,7 +65,8 @@ class _Repository:
     def getEmployeesReport(self):
         c = self._conn.cursor()
         c.execute("""
-        SELECT name, salary, coffee_stand ,ifnull((SELECT SUM(quantity* price ) FROM Employees NATURAL JOIN Activities NATURAL  JOIN Products),0)FROM Employees 
+        SELECT name, salary, coffee_stand ,ifnull((SELECT SUM(a.quantity* price ) FROM Employees as e INNER JOIN
+        (Products as p INNER JOIN Activities as a ON id= product_id AND a.quantity < 0) as sub ON e.id = sub.activator_id),0)FROM Employees 
                """)
 
         #"""SUM(A.quantity * P.price) FROM Employees as e INNER JOIN Activities as a ON e.id = a.activator_id INNER JOIN Products as P ON P.id = A.product_id;"""
