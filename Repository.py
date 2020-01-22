@@ -73,6 +73,18 @@ class _Repository:
 
         return c.fetchall()
 
+    def getActivityReport(self):
+        c = self._conn.cursor()
+        c.execute("""
+        SELECT A.date, P.description, A.quantity,  S.name FROM Activities as A INNER JOIN Products as P ON A.product_id = P.id INNER JOIN Suppliers as S ON S.id = A.activator_id WHERE A.quantity > 0 
+        UNION
+        SELECT  A.date, P.description, A.quantity,  E.name FROM Activities as A INNER JOIN Products as P ON A.product_id = P.id INNER JOIN Employees as E ON E.id = A.activator_id WHERE A.quantity < 0 ORDER BY date ASC
+               """)
+
+        #"""SUM(A.quantity * P.price) FROM Employees as e INNER JOIN Activities as a ON e.id = a.activator_id INNER JOIN Products as P ON P.id = A.product_id;"""
+
+        return c.fetchall()
+
 # the repository singleton
 repo = _Repository()
 atexit.register(repo._close)
