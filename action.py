@@ -10,14 +10,12 @@ actions_file_lines = actions_file.readlines()
 curr_aid = 1
 for line in actions_file_lines:
     # parse the current line
-    print(line)
     product_id = line.split(', ')[0]
     quantity = line.split(', ')[1]
     activator_id = line.split(', ')[2]
     date = line.split(', ')[3]
     # create DTO activity instance
     activity = Activity(curr_aid, product_id, int(quantity), activator_id, date)
-    print(activity)
     # create a DTO for the product
     product = repo.products.find(product_id)
     # if action is arrival
@@ -28,5 +26,5 @@ for line in actions_file_lines:
         repo.products.remove_quantity(product, activity.quantity)
         repo.activities.insert(activity)
     curr_aid = curr_aid + 1
-
+import printdb
 # if the action is arrival then we should update the correct product to add the quantity
