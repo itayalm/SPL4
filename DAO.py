@@ -115,7 +115,7 @@ class Activities:
 
     def insert(self, activity):
         self._conn.execute("""
-                 INSERT INTO Activities (aid ,product_id, quantity, activator_id, date) VALUES (?, ?, ?)
+                 INSERT INTO Activities (aid ,product_id, quantity, activator_id, date) VALUES (?, ?, ?, ?, ?)
         """, [activity.aid, activity.product_id, activity.quantity, activity.activator_id, activity.date])
 
     def find(self, aid):

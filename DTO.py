@@ -41,7 +41,7 @@ class Activity:
     def __init__(self, aid, product_id, quantity, activator_id, date):
         self.aid = aid
         self.product_id = product_id
-        self.quantity = quantity
+        self.quantity = int(quantity)
         self.activator_id = activator_id
         self.date = date
 

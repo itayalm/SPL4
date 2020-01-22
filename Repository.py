@@ -55,7 +55,11 @@ class _Repository:
             quantity INT NOT NULL,
             activator_id INT NOT NULL ,
             date DATE NOT NULL
+                
         );
+        SELECT name, salary, coffee_stand ,MAX(0,(SELECT SUM(quantity* price ) FROM Employees NATURAL JOIN Activities 
+            NATURAL  JOIN Products) )FROM Employees
+        
     """)
 
 
