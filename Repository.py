@@ -58,7 +58,15 @@ class _Repository:
         );
     """)
 
+    def getEmployeesReport(self):
+        c = self._conn.cursor()
+        c.execute("""
+        SELECT name, salary, coffee_stand ,ifnull((SELECT SUM(quantity* price ) FROM Employees NATURAL JOIN Activities NATURAL  JOIN Products),0)FROM Employees 
+               """)
 
+        #"""SUM(A.quantity * P.price) FROM Employees as e INNER JOIN Activities as a ON e.id = a.activator_id INNER JOIN Products as P ON P.id = A.product_id;"""
+
+        return c.fetchall()
 
 # the repository singleton
 repo = _Repository()
