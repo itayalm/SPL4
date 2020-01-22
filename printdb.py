@@ -28,4 +28,4 @@ for row in rows :
 print("Employees Report")
 rows = repo.getEmployeesReport()
 for row in rows :
-    print (row)
+    print(str(row[0]) + " " +str(row[1]) + " " +str(row[2]) + " "+str(row[3]) + " "  )
